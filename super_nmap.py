@@ -12,7 +12,7 @@ if __name__ == "__main__":
     argparser = argparse.ArgumentParser(
         prog="super_nmap.py",
         description='''
-            A wrapper for nmap automatically converts the output to html and caches hosts in the config file for more scans
+            A wrapper for nmap that automatically converts the output to html and caches hosts in the config file for more scans
         ''',
         usage="Usage: super_nmap.py [options] [targets]",
     )

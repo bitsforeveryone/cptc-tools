@@ -6,3 +6,12 @@ From CPTC ROE:
 approval prior to the competition. The submission deadline will be a minimum of two (2) weeks
 prior to any CPTC event."
 
+# Config Wizard (config.py)
+
+A wizard to help you set the IP address ranges and hosts in scope for the competition. This will generate a config file that can be used by the other tools.
+
+# Super Nmap (super_nmap.py)
+
+ A wrapper for nmap that automatically converts the output to html and caches hosts in the config file for more scans.
+
+ Run `python3 super_nmap.py -h` for help
