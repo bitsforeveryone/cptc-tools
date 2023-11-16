@@ -13,12 +13,6 @@ if __name__ == "__main__":
         prog="super_nmap.py",
         description='''
             A wrapper for nmap automatically converts the output to html and caches hosts in the config file for more scans
-            Scan Types:
-            ping: ping scan, no ports scanned, suggested for initial scan
-            port: scan all TCP ports, suggested for initial scan
-            fast: scan top 100 ports, suggested for initial scan
-            full: scan all TCP ports, suggested for subsequent scans with -H (hosts only) enabled
-            udp: scan all UDP ports, suggested for subsequent scans with -H (hosts only) enabled
         ''',
         usage="Usage: super_nmap.py [options] [targets]",
     )
@@ -36,6 +30,7 @@ if __name__ == "__main__":
     #parse arguments
     #get timestamp for script output
     timestamp = time.strftime("%Y-%m-%d_%H-%M-%S")
+    output_file = f"{args.output}/nmap_scan_{timestamp}_{args.scan_type}.xml"
     #create output directory if it doesn't exist
     subprocess.run(["mkdir", "-p", args.output])
     #create output file name (xml)
