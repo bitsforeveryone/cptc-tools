@@ -14,14 +14,13 @@ if __name__ == "__main__":
         description='''
             A wrapper for nmap that automatically converts the output to html and caches hosts in the config file for more scans
         ''',
-        usage="Usage: super_nmap.py [options] [targets]",
+        usage="Usage: super_nmap.py [options]",
     )
     argparser.add_argument("-C","--config", help="The config file to use", type=str, default="./config.json")
     argparser.add_argument("-s", "--scan-type", help="Scan type", type=str, choices=["ping", "port", "fast", "full","udp","custom"], default="custom")
     argparser.add_argument("-H","--hosts-only", help="Only scan hosts, not ranges", action="store_true")
     argparser.add_argument("-o", "--output", help="Output directory", type=str, default=".")
     argparser.add_argument("-c","--custom-args", help="Custom arguments to pass to nmap", type=str, default="")
-    argparser.add_argument("targets", help="Targets to scan", type=str, nargs="?")
     argparser.parse_args()
     #load config
 
@@ -52,11 +51,7 @@ if __name__ == "__main__":
     elif args.scan_type == "fast":
         nmap_args.append("-F")
     nmap_args.append(args.custom_args)
-    #get targets
-    if args.targets:
-        for target in args.targets:
-            nmap_args.append(target)
-    elif args.hosts_only:
+    if args.hosts_only:
         for host in config["hosts"]:
             nmap_args.append(host)
     else:

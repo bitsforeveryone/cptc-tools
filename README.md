@@ -19,12 +19,9 @@ A script to install all the packages needed for the tools to run. This script is
  A wrapper for nmap that automatically converts the output to html and caches hosts in the config file for more scans.
 
 ```
-usage: Usage: super_nmap.py [options] [targets]
+usage: Usage: super_nmap.py [options]
 
 A wrapper for nmap that automatically converts the output to html and caches hosts in the config file for more scans
-
-positional arguments:
-  targets               Targets to scan
 
 options:
   -h, --help            show this help message and exit
