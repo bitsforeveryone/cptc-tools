@@ -17,7 +17,7 @@ if __name__ == "__main__":
         usage="Usage: super_nmap.py [options]",
     )
     argparser.add_argument("-C","--config", help="The config file to use", type=str, default="./config.json")
-    argparser.add_argument("-s", "--scan-type", help="Scan type", type=str, choices=["ping", "port", "fast", "full","udp","custom"], default="custom")
+    argparser.add_argument("-s", "--scan-type", help="Scan type", type=str, choices=["ping", "port", "fast", "full","udp","custom","vulscan"], default="custom")
     argparser.add_argument("-H","--hosts-only", help="Only scan hosts, not ranges", action="store_true")
     argparser.add_argument("-o", "--output", help="Output directory", type=str, default=".")
     argparser.add_argument("-c","--custom-args", help="Custom arguments to pass to nmap", type=str, default="")
@@ -50,6 +50,18 @@ if __name__ == "__main__":
         nmap_args.append("-p0-65535")
     elif args.scan_type == "fast":
         nmap_args.append("-F")
+    elif args.scan_type== "vulscan":
+        if not args.hosts_only:
+            print("WARNING: Enabling -H (hosts only) is suggested for this scan because it will take a long time to do a vuln scan on a range", file=sys.stderr)
+        #check if vulscan/vulscan.nse exists
+        try:
+            with open("vulscan/vulscan.nse", "r") as f:
+                pass
+        except FileNotFoundError:
+            print("ERROR: vulscan.nse not found. Please run ./install.sh to install vulscan", file=sys.stderr)
+            sys.exit(1)
+        nmap_args.append("--script=./vulscan/vulscan.nse")
+        nmap_args.append("-A")
     nmap_args.append(args.custom_args)
     if args.hosts_only:
         for host in config["hosts"]:
