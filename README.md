@@ -10,6 +10,10 @@ prior to any CPTC event."
 
 A wizard to help you set the IP address ranges and hosts in scope for the competition. This will generate a config file that can be used by the other tools.
 
+# Installation Script (install.sh)
+
+A script to install all the packages needed for the tools to run. This script is intended to be run on a fresh install of Kali Linux.
+
 # Super Nmap (super_nmap.py)
 
  A wrapper for nmap that automatically converts the output to html and caches hosts in the config file for more scans.
