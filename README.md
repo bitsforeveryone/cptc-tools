@@ -18,4 +18,23 @@ A script to install all the packages needed for the tools to run. This script is
 
  A wrapper for nmap that automatically converts the output to html and caches hosts in the config file for more scans.
 
- Run `python3 super_nmap.py -h` for help
+```
+usage: Usage: super_nmap.py [options] [targets]
+
+A wrapper for nmap that automatically converts the output to html and caches hosts in the config file for more scans
+
+positional arguments:
+  targets               Targets to scan
+
+options:
+  -h, --help            show this help message and exit
+  -C CONFIG, --config CONFIG
+                        The config file to use
+  -s {ping,port,fast,full,udp,custom}, --scan-type {ping,port,fast,full,udp,custom}
+                        Scan type
+  -H, --hosts-only      Only scan hosts, not ranges
+  -o OUTPUT, --output OUTPUT
+                        Output directory
+  -c CUSTOM_ARGS, --custom-args CUSTOM_ARGS
+                        Custom arguments to pass to nmap
+```
