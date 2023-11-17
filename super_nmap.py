@@ -33,7 +33,7 @@ if __name__ == "__main__":
     #create output directory if it doesn't exist
     subprocess.run(["mkdir", "-p", args.output])
     #create output file name (xml)
-    nmap_args = ["nmap", "-oX", output_file, "-T4"]
+    nmap_args = ["sudo","nmap", "-vv", "-oX", output_file, "-T4"]
     if args.scan_type == "ping":
         nmap_args.append("-sn")
     elif args.scan_type == "port":
@@ -42,7 +42,9 @@ if __name__ == "__main__":
         if not args.hosts_only:
             print("WARNING: Enabling -H (hosts only) is suggested for this scan because it will take a long time to do a full scan on the full IP range", file=sys.stderr)
         nmap_args.append("-p0-65535")
-        nmap_args.append("-A")
+        nmap_args.append("-sV")
+        nmap_args.append("-O")
+        nmap_args.append("--script=default,safe,smb-vuln-ms17-010,http-default-accounts,http-vuln-cve2013-0156,smb-enum*")
     elif args.scan_type == "udp":
         if not args.hosts_only:
             print("WARNING: Enabling -H (hosts only) is suggested for this scan because it will take a long time to do a UDP scan on a range", file=sys.stderr)
@@ -89,5 +91,7 @@ if __name__ == "__main__":
                         json.dump(config, f)
     #turn xml into html using xsltproc
     subprocess.run(["xsltproc", output_file, "-o", output_file.replace(".xml", ".html")])
+    #turn html into pdf using wkhtmltopdf
+    subprocess.run(["wkhtmltopdf", "-n", output_file.replace(".xml", ".html"), output_file.replace(".xml", ".pdf")])
 
 

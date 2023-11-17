@@ -14,9 +14,12 @@ A wizard to help you set the IP address ranges and hosts in scope for the compet
 
 A script to install all the packages needed for the tools to run. This script is intended to be run on a fresh install of Kali Linux.
 
+Installs:
+- prowler
+
 # Super Nmap (super_nmap.py)
 
- A wrapper for nmap that automatically converts the output to html and caches hosts in the config file for more scans.
+ A wrapper for nmap that automatically converts the output to pdf/xml and caches hosts in the config file for more scans.
 
 ```
 usage: Usage: super_nmap.py [options]
@@ -27,7 +30,7 @@ options:
   -h, --help            show this help message and exit
   -C CONFIG, --config CONFIG
                         The config file to use
-  -s {ping,port,fast,full,udp,custom}, --scan-type {ping,port,fast,full,udp,custom}
+  -s {ping,port,fast,full,udp,custom}, --scan-type {ping,port,fast,full,udp,custom,vulscan}
                         Scan type
   -H, --hosts-only      Only scan hosts, not ranges
   -o OUTPUT, --output OUTPUT
